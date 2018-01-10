@@ -3,29 +3,8 @@
 }
 
 @page {
-  size: A4 landscape;
+  size: A4 portrait;
   margin: 15mm 20mm;
-}
-
-.ui.accordion .active.content {
-  -webkit-column-count: 2;
-  -moz-column-count: 2;
-  -ms-column-count: 2;
-  column-count: 2;
-  -webkit-column-gap: 30mm;
-  -moz-column-gap: 30mm;
-  -ms-column-gap: 30mm;
-  column-gap: 30mm;
-  position: fixed;
-  height: 210mm !important;
-  width: 257mm !important;
-  background: white;
-  padding: 0;
-}
-
-.ui.styled.accordion {
-  width: 297mm !important;
-  box-shadow: none;
 }
 
 .ui.text.container {
@@ -47,25 +26,13 @@
   content: "Questionnaire Theodo - ";
 }
 
-.company-BAM .ui.accordion .active.title::before {
-  content: "Questionnaire BAM - ";
-}
-
-.company-Theodo.UK .ui.accordion .active.title::before {
-  content: "Theodo Project Form - ";
-}
-
-.company-FASTIT .ui.accordion .active.title::before {
-  content: "Questionnaire Fast IT - ";
-}
-
 .ui.vertical.segment {
   position: static;
 }
-
+/* 
 .title {
   display: none;
-}
+} */
 
 .ui.checkbox label,
 .ui.segment {

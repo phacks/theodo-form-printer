@@ -112,9 +112,25 @@ export default {
           label: 'Non, ce n’est pas nécessaire pour l’instant'
         }
       ]
+    },
+    {
+      slug: questionSlugs.PERFORMANCE,
+      label: "J'ai mesuré cette semaine que les pages principales de mon projet se chargent en moins de 3 secondes",
+      type: types.MULTIPLE_CHOICE,
+      choices: [
+        {
+          slug: 'ok',
+          label: 'OK'
+        },
+        {
+          slug: 'ko',
+          label: 'Not OK'
+        }
+      ]
     }
   ],
   PROJECT: 'Projet',
   SPRINT: 'Sprint n°',
-  YES_ABS: 'Oui bien sûr'
+  YES_ABS: 'Oui bien sûr',
+  OK: 'OK',
 }

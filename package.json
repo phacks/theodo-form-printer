@@ -1,7 +1,7 @@
 {
-  "name": "theodo-form-printer",
+  "name": "theodo-standards",
   "version": "1.0.0",
-  "author": "Bruno Godefroy",
+  "author": "Nicolas Goutay, Bruno Godefroy",
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server",
