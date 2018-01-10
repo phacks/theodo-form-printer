@@ -1,6 +1,6 @@
-[![CircleCI](https://circleci.com/gh/BrunoGodefroy/theodo-form-printer/tree/master.svg?style=svg)](https://circleci.com/gh/BrunoGodefroy/theodo-form-printer/tree/master)
+[![CircleCI](https://circleci.com/gh/phacks/theodo-standards/tree/master.svg?style=svg)](https://circleci.com/gh/phacks/theodo-standards/tree/master)
 
-# Theodo forms printer
+# Theodo standards
 
 This projects aims at make it easier for anyone at Theodo to print their project form. No more excuses to have a board out of date.
 
@@ -31,4 +31,4 @@ then run on the `gh-pages` branch:
 ./deploy.sh
 ```
 
-The new version of the website is available at [https://brunogodefroy.github.io/theodo-form-printer/](https://brunogodefroy.github.io/theodo-form-printer/)
+The new version of the website is available at [https://phacks.github.io/theodo-standards/](https://phacks.github.io/theodo-standards/)

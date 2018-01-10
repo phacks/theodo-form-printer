@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Accordion, Label, Container } from 'semantic-ui-react'
 
-import { ProjectForm } from '@components/ui'
 import formStatus from '@config/formStatus'
 
 class ListForms extends PureComponent {
@@ -11,14 +10,11 @@ class ListForms extends PureComponent {
     const panels = this.props.forms.map((form, index) => {
       let label
       switch (form.status) {
-        case formStatus.WOW:
-          label = <Label color='green' className='pinned'>WOW!</Label>
-          break
         case formStatus.OK:
-          label = <Label color='olive' className='pinned'>Success</Label>
+          label = <Label color='olive' className='pinned'>Perf OK</Label>
           break
         case formStatus.KO:
-          label = <Label color='red' className='pinned'>Red bucket</Label>
+          label = <Label color='red' className='pinned'>Perf KO</Label>
           break
         default:
           label = <Label color='pink' className='pinned'>error</Label>
@@ -27,18 +23,17 @@ class ListForms extends PureComponent {
       const formTitle = form.sprint ? `${form.project} - Sprint ${form.sprint}` : `${form.project}`
       return {
         title: <span>{formTitle} {label}</span>,
-        content: <ProjectForm form={form} company={this.props.selectedCompany.name} />,
+        content: null,
         key: `${form.project} - Sprint ${form.sprint} - ${index}`
       }
     })
 
     if (this.props.forms.length > 0) {
       return <Container className={`company-${this.props.selectedCompany.name}`} >
-        <Container style={{ margin: '10px', display: 'flex', flexDirection: 'column' }} className='no-print'>
+        <Container style={{ margin: '10px', display: 'flex', flexDirection: 'column' }}>
           <Container textAlign='center'>
-            <Label color='green' >WOW: {this.props.numberOfWow} / {this.props.forms.length} - {Math.round(this.props.numberOfWow * 100 / this.props.forms.length)}%</Label>
-            <Label color='olive' >Success: {this.props.numberOfOk} / {this.props.forms.length} - {Math.round(this.props.numberOfOk * 100 / this.props.forms.length)}%</Label>
-            <Label color='red' >Red Bucket: {this.props.numberOfKo} / {this.props.forms.length} - {Math.round(this.props.numberOfKo * 100 / this.props.forms.length)}%</Label>
+            <Label color='green' >Perf OK: {this.props.numberOfOk} / {this.props.forms.length} - {Math.round(this.props.numberOfOk * 100 / this.props.forms.length)}%</Label>
+            <Label color='red' >Perf KO: {this.props.numberOfKo} / {this.props.forms.length} - {Math.round(this.props.numberOfKo * 100 / this.props.forms.length)}%</Label>
           </Container>
         </Container>
         <Container style={{ display: 'flex', justifyContent: 'center' }} textAlign='left'>

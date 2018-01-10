@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import { Header, Container, Loader, Dimmer, Divider } from 'semantic-ui-react'
 
 import {
@@ -13,20 +14,20 @@ import { Error } from '@components/ui'
 class App extends PureComponent {
   render () {
     return <Container text textAlign='center'>
-      <Container className='no-print' textAlign='center'>
-        <Dimmer className='no-print' active={this.props.loading} inverted>
+      <Container textAlign='center'>
+        <Dimmer active={this.props.loading} inverted>
           <Loader inverted>Loading</Loader>
         </Dimmer>
       </Container>
-      <Header className='no-print' as='h1' textAlign='center'> { this.props.selectedCompany.name } Project Form - Print Me</Header>
+      <Header as='h1' textAlign='center'> { this.props.selectedCompany.name } Performance Standard - {moment().format('DD/MM/YY')}</Header>
       <Container className='no-print'>
         <LoginButton />
       </Container>
-      <Divider className='no-print' />
+      <Divider />
       <Container className='no-print'>
         { this.props.loggedIn && <SelectCompanyButtons /> }
       </Container>
-      { this.props.error && <Error className='no-print'>{ this.props.errorMessage }</Error> }
+      { this.props.error && <Error>{ this.props.errorMessage }</Error> }
       <Container>
         { this.props.isCompanyChosen && <ListForms /> }
       </Container>
