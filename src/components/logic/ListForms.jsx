@@ -20,7 +20,7 @@ class ListForms extends PureComponent {
           label = <Label color='pink' className='pinned'>error</Label>
       }
 
-      const formTitle = form.sprint ? `${form.project} - Sprint ${form.sprint}` : `${form.project}`
+      const formTitle = form.sprint ? `${form.project} - Sprint ${form.sprint} - ${new Date(form.timestamp)}` : `${form.project}`
       return {
         title: <span>{formTitle} {label}</span>,
         content: null,

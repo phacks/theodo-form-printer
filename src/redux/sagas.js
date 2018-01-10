@@ -1,5 +1,11 @@
 import { call, put, takeEvery, takeLatest, select, fork, take, cancel, cancelled } from 'redux-saga/effects'
 import firebase from 'firebase'
+import filter from 'lodash/fp/filter'
+import flow from "lodash/fp/flow";
+import uniqBy from 'lodash/fp/uniqBy'
+import reverse from 'lodash/fp/reverse'
+import values from 'lodash/fp/values'
+import moment from 'moment'
 
 import {
   types,
@@ -49,7 +55,15 @@ function * syncLatestFormsSaga (channel, company) {
   while (true) {
     try {
       const { value: data } = yield take(channel)
-      yield put(fetchFormsSuccess(data, company))
+      const twoWeeksAgo = moment().subtract(2, 'weeks')
+      console.log('hey!')
+      const filteredData = flow(
+        values,
+        reverse,
+        uniqBy((form) => form['Projet']),
+        filter((form) => moment(form.timestamp).isAfter(twoWeeksAgo))
+      )(data)
+      yield put(fetchFormsSuccess(filteredData, company))
     } catch (e) {
       yield put(fetchFormsFailure('The latest project forms could not be retrieved. Please check you have the permission to view them'))
     } finally {
@@ -60,7 +74,8 @@ function * syncLatestFormsSaga (channel, company) {
 
 function * handleFormsSyncSaga (action) {
   const company = yield select(state => state.selectedCompany)
-  const channel = yield call(reduxSagaFirebase.database.channel, firebase.database().ref(`forms/${company.path}`).orderByChild('timestamp').limitToLast(30))
+  const channel = yield call(
+    reduxSagaFirebase.database.channel, firebase.database().ref(`forms/${company.path}`).orderByChild('timestamp').limitToLast(30))
   const syncTask = yield fork(syncLatestFormsSaga, channel, company)
 }
 
