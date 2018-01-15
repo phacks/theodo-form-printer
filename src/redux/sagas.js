@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import filter from 'lodash/fp/filter'
 import flow from "lodash/fp/flow";
 import uniqBy from 'lodash/fp/uniqBy'
+import remove from 'lodash/fp/remove'
 import reverse from 'lodash/fp/reverse'
 import values from 'lodash/fp/values'
 import moment from 'moment'
@@ -61,6 +62,7 @@ function * syncLatestFormsSaga (channel, company) {
         values,
         reverse,
         uniqBy((form) => form['Projet']),
+        remove((form) => form['Projet'].toLowerCase().includes('gouvernance')),
         filter((form) => moment(form.timestamp).isAfter(twoWeeksAgo))
       )(data)
       yield put(fetchFormsSuccess(filteredData, company))
